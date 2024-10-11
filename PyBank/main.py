@@ -1,8 +1,18 @@
 # Moduale
 import csv
+import os
+
+# Manually set the correct working directory to the folder where your script is located
+os.chdir("C:/Users/somay/OneDrive/Boot Camp/Class Activity/Homeworks/3/python-challenge/PyBank")
+
+# Get the current working directory (cwd)
+cwd = os.getcwd()
+
+# Print the current working directory to verify
+print("Current working directory:", cwd)
 
 # Set path to the CSV file
-budget_data_csv = "C:/Users/somay/OneDrive/Boot Camp/Class Activity/Homeworks/3/python-challenge/PyBank/Resources/budget_data.csv"
+budget_data_csv = os.path.join(cwd, 'Resources', 'budget_data.csv')
 
 # Set variables
 total_months = 0
@@ -34,12 +44,12 @@ with open(budget_data_csv) as csvfile:
         data.append(row)
         
         # Calculate changes after the first month
-        current__month_profit_loss = int(row[1])
+        current_month_profit_loss = int(row[1])
         if previous_month_profit_loss is not None:
-            change = current__month_profit_loss - previous_month_profit_loss
+            change = current_month_profit_loss - previous_month_profit_loss
             changes.append(change)
             dates.append(row[0])       # Store the date of the change
-        previous_month_profit_loss = current__month_profit_loss
+        previous_month_profit_loss = current_month_profit_loss
 
 # Print total months and total profit/losses
 print(f"Total Months: {total_months}")
@@ -74,6 +84,7 @@ results = (
 print(results)
 
 # Export the results to a text file
-output_path = "C:/Users/somay/OneDrive/Boot Camp/Class Activity/Homeworks/3/python-challenge/PyBank/analysis/financial_analysis.txt"
+output_path  = os.path.join(cwd, "analysis", "financial_analysis.txt")  
+
 with open(output_path, "w") as txt_file:
     txt_file.write(results)

@@ -1,8 +1,15 @@
 # Module
 import csv
+import os
+
+# Manually set the correct working directory to the folder where your script is located
+os.chdir("C:/Users/somay/OneDrive/Boot Camp/Class Activity/Homeworks/3/python-challenge/PyPoll")
+
+# Get the current working directory (cwd)
+cwd = os.getcwd()
 
 # Set path to the CSV file
-election_data_csv = "C:/Users/somay/OneDrive/Boot Camp/Class Activity/Homeworks/3/python-challenge/PyPoll/Resources/election_data.csv"
+election_data_csv = os.path.join(cwd, 'Resources', "election_data.csv")
 
 # Set variables
 total_votes = 0
@@ -83,7 +90,7 @@ results += (
 print(results)
 
 # Export the results to a text file
-output_path = "C:/Users/somay/OneDrive/Boot Camp/Class Activity/Homeworks/3/python-challenge/PyPoll/analysis/election_results.txt"
+output_path = os.path.join(cwd, "analysis", "election_results.txt")
 with open(output_path, "w") as txt_file:
     txt_file.write(results)
 
